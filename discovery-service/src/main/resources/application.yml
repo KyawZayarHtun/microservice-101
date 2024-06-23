@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: discovery-service
+server:
+  port: 5000
+
+eureka:
+  client:
+    # fetch other discovery services?
+    fetch-registry: false
+    # register this discovery service into own discovery service
+    register-with-eureka: false
+    # the url of discovery service in case of different ip and port
+    # default = http://localhost:8761/eureka
+    service-url:
+      defaultZone: http://localhost:5000/eureka

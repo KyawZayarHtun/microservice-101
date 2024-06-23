@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: customer-service
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/micro
+    username: kyawzayar
+    password: kyawzayar
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+server:
+  port: 0
+  servlet:
+    context-path: /customer-app/api
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:5000/eureka
