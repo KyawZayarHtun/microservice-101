@@ -1,9 +1,6 @@
 package com.kzyt.address;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,5 +14,8 @@ public class Address {
     private Long id;
 
     private String street, state, city, country;
+
+    @Column(name = "customer_id")
+    private Long customerId;
 
 }

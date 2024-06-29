@@ -3,6 +3,8 @@ package com.kzyt.address;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AddressService {
@@ -20,4 +22,11 @@ public class AddressService {
         );
     }
 
+    public List<AddressDto> findAllAddress() {
+        return addressRepo.findAll()
+                .stream().map(address ->
+                        new AddressDto(address.getId(), address.getStreet(),
+                                address.getState(), address.getCity(), address.getCountry()))
+                .toList();
+    }
 }

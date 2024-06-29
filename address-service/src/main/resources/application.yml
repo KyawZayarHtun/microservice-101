@@ -30,3 +30,20 @@ eureka:
     lease-renewal-interval-in-seconds: 10
     # Eureka server didn't get any heartbeat from this in 90s it will remove, 90s is default
     lease-expiration-duration-in-seconds: 30
+    # we can give any data we want to pass to Map<String, String>
+    metadata-map:
+      context-path: /address-app/api
+      from: myanmar
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: Address Application
+    version: 1.0

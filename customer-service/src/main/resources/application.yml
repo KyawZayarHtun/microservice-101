@@ -12,10 +12,10 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        show_sql: true
-        format_sql: true
+        show_sql: false
+        format_sql: false
 server:
-  port: 0
+  port: 8082
   servlet:
     context-path: /customer-app/api
 
@@ -23,3 +23,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:5000/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: Customer Application
+    version: 1.0

@@ -1,8 +1,11 @@
 package com.kzyt.user;
 
+import com.kzyt.address.AddressRes;
 import com.kzyt.feignclient.AddressClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,4 +25,19 @@ public class CustomerService {
         );
     }
 
+    public List<CustomerDto> getCustomers() {
+        var customers = customerRepo.findAll();
+        var addresses = addressClient.getAddresses().getBody();
+
+        return customers.stream()
+                .map(cus -> {
+                    assert addresses != null;
+                    var address = addresses.stream()
+                            .filter(addressRes -> addressRes.getId().equals(cus.getId()))
+                            .findAny()
+                            .orElse(new AddressRes());
+                    return new CustomerDto(cus.getId(), cus.getName(), cus.getAge(), address);
+                })
+                .toList();
+    }
 }
